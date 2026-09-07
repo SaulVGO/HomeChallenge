@@ -3,9 +3,9 @@
 - Validating anything that depends on external systems due to integration complexity.
 - CAPTCHA validation since the main purpose is to stop bots
 
-## CAPTCH HANDLING
+## CAPTCHA HANDLING
 
-CAPTCH needs to be handle in test environments where it can be deactivated. If possible answer can be mocked and separate the functional flow from the anti-bot.
+CAPTCHA needs to be handle in test environments where it can be deactivated. If possible answer can be mocked and separate the functional flow from the anti-bot.
 
 ## Flakiness risks
 
