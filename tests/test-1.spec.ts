@@ -1,7 +1,7 @@
 import { test, expect, defineConfig } from '@playwright/test';
 
 test.only('test', async ({ page }) => {
-  await page.goto('');
+  await page.goto('/');
   await expect(page).toHaveTitle('Liverpool');
   await page.getByRole('textbox', { name: 'Buscar por producto, categorí' }).fill('playstation 5');
   await page.getByRole('textbox', { name: 'Buscar por producto, categorí' }).press('Enter');
