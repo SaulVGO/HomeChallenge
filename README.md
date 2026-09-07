@@ -1,6 +1,6 @@
 # TakeHomeChallenge
 
-[![Playwright Tests](https://github.com/OWNER/REPOSITORY/actions/workflows/test.yml/badge.svg)](https://github.com/OWNER/REPOSITORY/actions/workflows/test.yml)
+[![Playwright Tests](https://github.com/SaulVGO/HomeChallenge/actions/workflows/test.yml/badge.svg)](https://github.com/SaulVGO/HomeChallenge/actions/workflows/test.yml)
 
 Pruebas end-to-end con Playwright para la búsqueda y el filtrado de productos en Liverpool.
 
@@ -72,7 +72,7 @@ Sustituye `OWNER/REPOSITORY` en el badge superior por el propietario y nombre re
 2. Configura el remoto y publica la rama actual:
 
 ```bash
-git remote add origin https://github.com/OWNER/REPOSITORY.git
+git remote add origin https://github.com/SaulVGO/HomeChallenge.git
 git add .
 git commit -m "Initial project setup"
 git branch -M main
