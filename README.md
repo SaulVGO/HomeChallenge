@@ -26,7 +26,7 @@ npx playwright install --with-deps
 
 ## Ejecución local
 
-El modo predeterminado es **headless** y ejecuta las pruebas en Chromium:
+El modo predeterminado es **headless** y ejecuta las pruebas en Chrome:
 
 ```bash
 npx playwright test
