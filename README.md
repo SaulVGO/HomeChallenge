@@ -2,59 +2,95 @@
 
 [![Playwright Tests](https://github.com/SaulVGO/HomeChallenge/actions/workflows/test.yml/badge.svg)](https://github.com/SaulVGO/HomeChallenge/actions/workflows/test.yml)
 
-Pruebas end-to-end con Playwright para la búsqueda y el filtrado de productos en Liverpool.
+Pruebas end-to-end con Playwright para validar la búsqueda, el filtrado y el ordenamiento de productos en Liverpool.
 
 ## Requisitos
 
-- Node.js LTS
-- npm
+Antes de comenzar, instala:
+
+- [Node.js LTS](https://nodejs.org/). npm se instala automáticamente junto con Node.js.
+- Google Chrome, porque el proyecto está configurado para ejecutar las pruebas en Chrome.
+
+Puedes comprobar la instalación desde PowerShell, Terminal o Command Prompt:
+
+```bash
+node --version
+npm --version
+```
 
 ## Instalación
 
-Desde la raíz del proyecto:
+1. Descarga el proyecto y abre una terminal en su carpeta raíz, la carpeta que contiene `package.json`.
+2. Instala las dependencias del proyecto:
 
 ```bash
 npm ci
-npx playwright install
 ```
 
-En Linux CI, instala también las dependencias del sistema:
+3. Instala el navegador que utiliza Playwright:
 
 ```bash
-npx playwright install --with-deps
+npx playwright install chromium
 ```
 
-## Ejecución local
+En un entorno Linux de integración continua, utiliza este comando para instalar también las dependencias del sistema:
 
-El modo predeterminado es **headless** y ejecuta las pruebas en Chrome:
+```bash
+npx playwright install --with-deps chromium
+```
+
+## Ejecutar las pruebas localmente
+
+Todos los comandos siguientes deben ejecutarse desde la carpeta raíz del proyecto.
+
+### Controlar el modo desde la configuración
+
+El archivo [`playwright.config.js`](playwright.config.js) contiene la propiedad `headless` dentro de `use`. El comando `npx playwright test` respeta el valor configurado:
+
+```javascript
+use: {
+	headless: true
+}
+```
+
+- `headless: true`: ejecuta las pruebas sin mostrar la ventana del navegador.
+- `headless: false`: ejecuta las pruebas mostrando la ventana del navegador.
+
+Para cambiar el modo, modifica el valor de `headless` en `playwright.config.js` y ejecuta el mismo comando.
+
+### Headless: navegador oculto
+
+Con `headless: true`, las pruebas se ejecutan sin abrir una ventana del navegador, por lo que este modo es útil para ejecuciones rápidas o automatizadas:
 
 ```bash
 npx playwright test
 ```
 
-Para ejecutar con el navegador visible (**headed**):
+También puedes ejecutar únicamente la prueba principal:
+
+```bash
+npx playwright test tests/test-1.spec.js
+```
+
+### Headed: navegador visible
+
+Con `headless: false`, el comando anterior abre la ventana de Chrome mientras se ejecutan las pruebas:
+
+```bash
+npx playwright test
+```
+
+Como alternativa puntual, puedes forzar el modo visible sin modificar el archivo de configuración usando `--headed`:
 
 ```bash
 npx playwright test --headed
 ```
 
-También puedes activar el modo visible mediante la variable de entorno:
-
-PowerShell:
-
-```powershell
-$env:HEADED="true"; npx playwright test
-```
-
-Command Prompt:
-
-```bat
-set HEADED=true && npx playwright test
-```
+La ventana de Chrome se abrirá mientras se ejecutan las pruebas.
 
 ## Reporte HTML
 
-Después de una ejecución, abre el reporte con:
+Después de ejecutar las pruebas, abre el reporte detallado con:
 
 ```bash
 npx playwright show-report
@@ -62,29 +98,10 @@ npx playwright show-report
 
 ## GitHub Actions
 
-El workflow [`Playwright Tests`](.github/workflows/test.yml) se ejecuta en cada push a `main` o `master` y en pull requests dirigidos a esas ramas.
+El workflow [`Playwright Tests`](.github/workflows/test.yml) ejecuta las pruebas automáticamente en cada push a `main` o `master`, y en pull requests dirigidos a esas ramas. La ejecución utiliza Linux, instala Chromium y ejecuta las pruebas en modo headless.
 
-Sustituye `OWNER/REPOSITORY` en el badge superior por el propietario y nombre reales del repositorio para mostrar su estado en GitHub.
+Al finalizar, GitHub Actions guarda el reporte de Playwright como artefacto durante 30 días.
 
-## Publicar en GitHub
+## Ejecución exitosa
 
-1. Crea un repositorio vacío en GitHub con el nombre que prefieras. No inicialices README, `.gitignore` ni licencia, porque esos archivos ya existen localmente.
-2. Configura el remoto y publica la rama actual:
-
-```bash
-git remote add origin https://github.com/SaulVGO/HomeChallenge.git
-git add .
-git commit -m "Initial project setup"
-git branch -M main
-git push -u origin main
-```
-
-3. Cambia `OWNER/REPOSITORY` en el badge por los datos reales del repositorio y publica ese cambio:
-
-```bash
-git add README.md
-git commit -m "Update GitHub Actions badge"
-git push
-```
-
-Después del primer push, GitHub Actions ejecutará automáticamente el workflow y podrás consultar el resultado en la pestaña **Actions**.
+Consulta una [corrida exitosa de Playwright Tests en GitHub Actions](https://github.com/SaulVGO/HomeChallenge/actions/runs/35049462031).
