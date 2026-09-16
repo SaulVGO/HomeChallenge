@@ -104,4 +104,4 @@ Al finalizar, GitHub Actions guarda el reporte de Playwright como artefacto dura
 
 ## Ejecución exitosa
 
-Consulta una [corrida exitosa de Playwright Tests en GitHub Actions](https://github.com/SaulVGO/HomeChallenge/actions/runs/35049462031).
+Consulta una [corrida exitosa de Playwright Tests en GitHub Actions](https://github.com/SaulVGO/HomeChallenge/actions/runs/35136951349).
